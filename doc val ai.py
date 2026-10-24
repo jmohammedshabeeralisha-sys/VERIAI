@@ -3,9 +3,12 @@ from pypdf import PdfReader
 import re
 from google import genai
 import os
-client = genai.Client(
-    api_key=os.environ.get("GEMINI_API_KEY")
+api_key = st.secrets.get(
+    "GEMINI_API_KEY",
+    os.environ.get("GEMINI_API_KEY")
 )
+
+client = genai.Client(api_key=api_key)
 def validate_document(text):
     results = {}
 
